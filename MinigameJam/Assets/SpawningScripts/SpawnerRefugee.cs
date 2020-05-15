@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class SpawnerRefugee : MonoBehaviour
 {
     public enum Phase { Spawning, Waiting, Countdown}
 

@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thickness: 0.5
-  Explsive: 1
+  Explsive: 0
   explosiveRange: 1
 --- !u!114 &760800126645993122
 MonoBehaviour:
