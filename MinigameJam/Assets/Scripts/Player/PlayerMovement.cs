@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator Rotate (Transform transformToRotate)
     {
-
         Transform previousTransform = transformToRotate;//save the transform
 
         PlayerInput that = GetComponentInParent<PlayerInput> ();//ref to the player input
@@ -66,6 +65,4 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
     }
-  
-
 }
