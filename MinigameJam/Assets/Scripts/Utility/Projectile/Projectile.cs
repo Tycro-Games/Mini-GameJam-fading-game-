@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 [RequireComponent (typeof (CircleCollider2D))]
 public class Projectile : MonoBehaviour
@@ -11,14 +12,17 @@ public class Projectile : MonoBehaviour
     private float thickness = 0.25f;
 
     [SerializeField]
-    private bool Explsive=false;
+    private bool Explsive = false;
     [SerializeField]
-    private float explosiveRange=1.0f;
+    private float explosiveRange = 1.0f;
 
     private int damage;
     private bool destroyed = false;
     private readonly float lifetime = 5.0f;
-
+    [SerializeField]
+    private GameObject effect = null;
+    [SerializeField]
+    private GameObject effectDirt = null;
     public void Init (float Speed, int Damage, LayerMask Collide)
     {
         speed = Speed;
@@ -48,7 +52,10 @@ public class Projectile : MonoBehaviour
     public void DestroyProjectile ()
     {
         if (transform.parent.gameObject.activeInHierarchy)
+        {
             PoolingObjectsSystem.Destroy (transform.parent.gameObject);
+            
+        }
     }
     public IEnumerator DestroyProjectileTime (float lifetime)
     {
@@ -60,6 +67,21 @@ public class Projectile : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast (transform.position, thickness, transform.forward, veloc, collideableLayer);
         if (hit.collider != null)
         {
+            
+            if (hit.transform.parent.tag == "Human")
+            {
+                GameObject ef = Instantiate (effect, hit.point, Quaternion.LookRotation (Vector3.forward, hit.normal));
+                EnemyMove enemy = hit.transform.GetComponentInParent<EnemyMove> ();
+                enemy.StartCoroutine (enemy.Hit ());
+                Destroy (ef, 2);
+            }
+            else
+            {
+                GameObject ef = Instantiate (effectDirt, hit.point, Quaternion.LookRotation (Vector3.forward, hit.normal));
+ 
+                Destroy (ef, 2);
+            }
+           
             HitObject (hit.collider, hit.point);
         }
     }
@@ -72,15 +94,15 @@ public class Projectile : MonoBehaviour
     void HitObject (Collider2D col, Vector2 pointHit)
     {
         takeCol (col);
-        
-            
+
+
         if (Explsive)
         {
             Collider2D[] colliders = new Collider2D[10];
             colliders = Physics2D.OverlapCircleAll (transform.position, explosiveRange, collideableLayer);
             if (colliders.Length != 0)
             {
-                foreach(Collider2D c in colliders)
+                foreach (Collider2D c in colliders)
                 {
                     takeCol (c);
                 }

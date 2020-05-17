@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8ecdf9f92d6184ea5007a6d12f1a21, type: 3}
   m_Name: Upgrade
   m_EditorClassIdentifier: 
-  Damage: 25
-  fireRate: 2
+  Damage: 1
+  fireRate: 0.2

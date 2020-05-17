@@ -1,35 +1,52 @@
 ﻿using UnityEngine;
-
+[RequireComponent (typeof (SpriteRenderer))]
 public class WeaponPointer : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
+    private bool isFacingRight;
+    [SerializeField]
+    private Sprite[] Sprites = null;
 
-    private bool facingRight = true;
+    [SerializeField]
+    private Transform pos = null;
 
-    private void Update ()
+    private int symetryAngle = 0;
+
+    private Pointer effect;
+    private void Start ()
     {
-        #region rot
-        Vector2 dir = (CursorController.MousePosition () - (Vector2)transform.position).normalized;
+        spriteRenderer = GetComponent<SpriteRenderer> ();
 
-        Quaternion newPos = Quaternion.LookRotation (Vector3.forward, dir);
-
-        transform.rotation = newPos;
-        #endregion
-
-        #region checkFlip
-        float currentX = transform.position.x;
-        float thatX = CursorController.MousePosition ().x;
-        if (thatX < currentX && facingRight)
-            Flip ();
-        else if (thatX > currentX && !facingRight)
-            Flip ();
-        #endregion
+        effect = GetComponentInChildren<Pointer> ();
+        symetryAngle = 360 / Sprites.Length;
     }
-    public void Flip ()
+    void Update ()
     {
-        facingRight = !facingRight;
-        // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        transform.position = pos.position;
+
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+        Vector2 dir = (mousePos - (Vector2)transform.parent.position).normalized;
+
+        if (transform.parent.position.x < mousePos.x)
+            isFacingRight = true;
+        else
+            isFacingRight = false;
+
+        float angle = Vector2.Angle (Vector2.up, dir);
+
+        int index = Mathf.RoundToInt (angle / symetryAngle);
+
+        
+        if (index == 0)
+            spriteRenderer.sprite = Sprites[index];
+        else
+        {
+            if (!isFacingRight)
+                spriteRenderer.sprite = Sprites[index];
+            else
+            {
+                spriteRenderer.sprite = Sprites[Sprites.Length - index];
+            }
+        }
     }
 }

@@ -6,7 +6,8 @@ public class IsFinished : MonoBehaviour
 {
     public static void GetUpgrade (Stats stats)
     {
-        BulletSpawner.bonus.bonusFirerate = stats.fireRate;
+        BulletSpawner.bonus.bonusFirerate += stats.fireRate;
         BulletSpawner.bonus.bonusDamage += stats.Damage;
+        
     }
 }

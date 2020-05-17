@@ -4,8 +4,8 @@ using UnityEngine.Events;
 public struct Bonus
 {
     public int bonusDamage;
-    public int bonusFirerate;
-   public Bonus (int BonusDg=0, int BonusF = 0)
+    public float bonusFirerate;
+   public Bonus (int BonusDg=0, float BonusF = 0)
     {
         bonusDamage = BonusDg;
         bonusFirerate = BonusF;
@@ -34,8 +34,8 @@ public class BulletSpawner : MonoBehaviour
     {
         if (currentTime <= Time.time)
         {
-            currentTime = Time.time + 1 / projectile.FirePerSecond;
-            currentTime -= bonus.bonusFirerate;
+
+            currentTime = Time.time + 1 / (projectile.FirePerSecond+bonus.bonusFirerate);
             shoot.Invoke ();
 
             Projectile projectileInit = Spawner.Spawn (projectile.projectilePrefab, transform, projectiles).GetComponentInChildren<Projectile> ();

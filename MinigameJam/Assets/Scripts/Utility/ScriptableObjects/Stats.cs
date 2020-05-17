@@ -3,6 +3,6 @@
 public class Stats : ScriptableObject
 {
     public int Damage = 25;
-    public int fireRate = 2;
+    public float fireRate = 2;
 
 }
