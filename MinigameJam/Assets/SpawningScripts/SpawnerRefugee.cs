@@ -46,7 +46,6 @@ public class SpawnerRefugee : MonoBehaviour
         {
             SpawnCharacter ();
             yield return new WaitForSeconds (1f / spawnRate);
-
         }
 
         yield break;

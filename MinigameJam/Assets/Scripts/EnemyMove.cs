@@ -29,7 +29,8 @@ public class EnemyMove : MonoBehaviour
     private Animator anim;
 
     private float RandomStart;
-    
+
+    private bool AddHumans = false;
     private void Start ()
     {
         if (RandomSin)

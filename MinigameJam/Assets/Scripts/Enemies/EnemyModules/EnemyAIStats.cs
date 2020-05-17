@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent (typeof (Collider2D))]
 
 public class EnemyAIStats : CommonStats, IHitable
 {
@@ -10,6 +10,8 @@ public class EnemyAIStats : CommonStats, IHitable
 
     [SerializeField]
     private GameObject dead = null;
+
+    
     public void Die ()
     {
         FindObjectOfType<Health> ().ChangeInHealth (takePoints);

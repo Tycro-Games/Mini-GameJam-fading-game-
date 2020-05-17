@@ -1318,8 +1318,8 @@ MonoBehaviour:
   - {fileID: 6427568222701739779, guid: 25f7ebb7e1c9dfb4698dcdf32315249d, type: 3}
   specialDude: {fileID: 32635146799964545, guid: 87eb9f7eb766b6944988505c155f8659,
     type: 3}
-  characterCount: 15
-  TChance: 30
+  characterCount: 10
+  TChance: 40
   SChance: 5
 --- !u!1 &417818985
 GameObject:
