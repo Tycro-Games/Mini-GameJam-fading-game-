@@ -11,13 +11,16 @@ public class EnemyAIStats : CommonStats, IHitable
     [SerializeField]
     private GameObject dead = null;
 
-    
+
     public void Die ()
     {
         FindObjectOfType<Health> ().ChangeInHealth (takePoints);
         if (transform.childCount > 0)
             transform.DetachChildren ();
-        Instantiate (dead, transform.position, transform.rotation);
+
+        GameObject ob = Instantiate (dead, transform.position, transform.rotation);
+        Destroy (ob, 3f);
+        GetComponentInParent<EnemyMove> ().Die();
         Destroy (transform.parent.gameObject);
     }
     public void TakeDamage (int dg)

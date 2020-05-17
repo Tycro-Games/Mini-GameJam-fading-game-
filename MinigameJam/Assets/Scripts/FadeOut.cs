@@ -21,12 +21,15 @@ public class FadeOut : MonoBehaviour
     }
     public IEnumerator Fade ()
     {
-        Color opaq = sprite.color;
-        Vector3 scale = transform.parent.localScale;
         if (dag)
             hp.ChangeInHealth (dg);
         else
             hp.ADDInHealth (dg);
+
+        Color opaq = sprite.color;
+        Vector3 scale = transform.parent.localScale;
+       
+
 
         while (opaq.a > 0)
         {
@@ -45,6 +48,25 @@ public class FadeOut : MonoBehaviour
 
         }
        
+        Destroy (gameObject);
+    }
+    public IEnumerator JustFade ()
+    {
+
+        Color opaq = sprite.color;
+    
+
+
+
+        while (opaq.a > 0)
+        {
+            yield return null;
+           
+            opaq.a -= Time.deltaTime;
+            sprite.color = opaq;
+
+        }
+
         Destroy (gameObject);
     }
 }
