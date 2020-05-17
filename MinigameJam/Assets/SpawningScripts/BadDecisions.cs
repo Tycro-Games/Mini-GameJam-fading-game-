@@ -14,9 +14,9 @@ public class BadDecisions : MonoBehaviour
     //ResourcesToCivilians, ResourcesToScientists, ArmyTraining, ResearchGrant,
     //FoodShortage, PowerOutage, LackOfMilitaryResources}
 
-    int milInfluence;
-    int civilInfluence;
-    int sciInfluence;
+    int milInfluence = 50 + IsFinished.number * 5;
+    int civilInfluence = 50 + IsFinished.number * 5;
+    int sciInfluence = 50 + IsFinished.number * 5;
 
     bool notClickedYet = true;
 
@@ -245,11 +245,11 @@ public class BadDecisions : MonoBehaviour
             textyMesh.text = "The gates of the bunker have been closed,you must manage the factions in your bunker";
         else
             textyMesh.text = textule;
-        //if (milInfluence <= 0 || civilInfluence <= 0 || sciInfluence <= 0)
-        //{
-        //    textyMesh.text = "Game Over,the factions in your bunker overthrew you";
-        //    buton1.SetActive(false);
-        //    buton2.SetActive(false);
-        //}
+        if (milInfluence <= 0 || civilInfluence <= 0 || sciInfluence <= 0)
+        {
+            textyMesh.text = "Game Over,the factions in your bunker overthrew you";
+            buton1.SetActive(false);
+            buton2.SetActive(false);
+        }
     }
 }

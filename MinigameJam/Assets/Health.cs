@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
     [SerializeField]
     private Material black;
 
+    public GameObject stage2;
+
     private void Start ()
     {
         black.SetFloat ("_Saturation", 1);
@@ -14,8 +16,10 @@ public class Health : MonoBehaviour
     public void ChangeInHealth (float dif = 0.25f)
     {
         black.SetFloat ("_Saturation", black.GetFloat ("_Saturation") - dif);
-        if (black.GetFloat ("_Saturation") <= 0)
-            Debug.Log ("loose");
+        if (black.GetFloat("_Saturation") <= 0)
+        {
+            stage2.SetActive(true);
+        }          
     }
     public void ADDInHealth (float dif = 0.05f)
     {
