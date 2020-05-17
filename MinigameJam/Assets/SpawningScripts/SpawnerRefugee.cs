@@ -35,7 +35,7 @@ public class SpawnerRefugee : MonoBehaviour
 
     void Start ()
     {
-        remainingTime = timeBetweenWaves;
+        remainingTime = 26;
         phase = Phase.Countdown;
     }
 

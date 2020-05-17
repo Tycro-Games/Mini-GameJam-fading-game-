@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2489705845698363962}
   m_Layer: 8
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   RandomSin: 1
   maxSin: 1
   minSin: 0.25
+  AddHumans: 1
 --- !u!1 &2489705847312109345
 GameObject:
   m_ObjectHideFlags: 0

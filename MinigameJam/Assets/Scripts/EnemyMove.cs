@@ -30,7 +30,8 @@ public class EnemyMove : MonoBehaviour
 
     private float RandomStart;
 
-    private bool AddHumans = false;
+    [SerializeField]
+    private int AddHumans = 0;
     private void Start ()
     {
         if (RandomSin)
@@ -76,6 +77,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
+            IsFinished.Numberup (AddHumans);
             HasBonus bonus = GetComponent<HasBonus> ();
 
             if (bonus != null)
@@ -96,5 +98,14 @@ public class EnemyMove : MonoBehaviour
         speed = 0.1f;
         yield return new WaitForSeconds (time);
         speed = tSpeed;
+    }
+    public void Die ()
+    {
+        fade.StartCoroutine (fade.JustFade ());
+
+        fade.gameObject.transform.SetParent (null);
+
+        Destroy (gameObject);
+
     }
 }

@@ -238,11 +238,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMin: 1
   speedMax: 3
-  stopDist: 0.1
+  stopDist: 0.25
   sinUse: 0
   RandomSin: 1
   maxSin: 1
   minSin: 0.25
+  AddHumans: 1
 --- !u!1 &8730055237108829716
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +257,7 @@ GameObject:
   - component: {fileID: 8730055237108829722}
   m_Layer: 8
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
