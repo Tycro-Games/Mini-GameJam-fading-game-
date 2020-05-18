@@ -50,7 +50,10 @@ public class SpawnerRefugee : MonoBehaviour
 
         yield break;
     }
-
+   public void StartWave ()
+    {
+        remainingTime = 0;
+    }
     void SpawnCharacter ()
     {
         float chance = Random.Range (0.0f, 100.0f);
@@ -64,7 +67,7 @@ public class SpawnerRefugee : MonoBehaviour
         if (chance < TChance)
         {
             // Spawn terrorist
-            GameObject oj = Instantiate (terrorist, pos, transform.rotation);
+            GameObject oj = Instantiate (terrorist, pos, transform.rotation,transform);
             if (rotate)
             {
                 Vector3 rot = oj.transform.localScale;
@@ -77,7 +80,7 @@ public class SpawnerRefugee : MonoBehaviour
         else if (chance < SChance + TChance)
         {
             // Spawn the special one with the upgrades and self esteem
-            GameObject oj = Instantiate (specialDude, pos, transform.rotation);
+            GameObject oj = Instantiate (specialDude, pos, transform.rotation, transform);
             if (rotate)
             {
                 Vector3 rot = oj.transform.localScale;
@@ -88,7 +91,7 @@ public class SpawnerRefugee : MonoBehaviour
         else
         {
             // Spawn the filthy refugee that is not special
-            GameObject oj = Instantiate (refugees[Random.Range (0, refugees.Length)], pos, transform.rotation);
+            GameObject oj = Instantiate (refugees[Random.Range (0, refugees.Length)], pos, transform.rotation, transform);
             if (rotate)
             {
                 Vector3 rot = oj.transform.localScale;

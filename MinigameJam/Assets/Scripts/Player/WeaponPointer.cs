@@ -13,6 +13,7 @@ public class WeaponPointer : MonoBehaviour
     private int symetryAngle = 0;
 
     private Pointer effect;
+    private bool stop = false;
     private void Start ()
     {
         spriteRenderer = GetComponent<SpriteRenderer> ();
@@ -20,8 +21,14 @@ public class WeaponPointer : MonoBehaviour
         effect = GetComponentInChildren<Pointer> ();
         symetryAngle = 360 / Sprites.Length;
     }
+    public void Stop ()
+    {
+        stop = true;
+    }
     void Update ()
     {
+        if (stop)
+            return;
         transform.position = pos.position;
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);

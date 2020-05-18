@@ -12,6 +12,11 @@ public class CursorController : MonoBehaviour
         Cursor.visible = false;
         input = GetComponentInParent<PlayerInput> ();//ref to the player input
     }
+    public void Stop ()
+    {
+        Cursor.visible = true;
+        Destroy (this);
+    }
     private void Update ()
     {
         if (input.currentControlScheme == "Keyboard+Mouse")

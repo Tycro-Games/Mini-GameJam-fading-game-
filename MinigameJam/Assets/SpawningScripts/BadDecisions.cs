@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BadDecisions : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class BadDecisions : MonoBehaviour
 
     public GameObject buton1;
     public GameObject buton2;
+    public GameObject esc;
 
     bool yes;
     bool no;
@@ -248,8 +250,22 @@ public class BadDecisions : MonoBehaviour
         if (milInfluence <= 0 || civilInfluence <= 0 || sciInfluence <= 0)
         {
             textyMesh.text = "Game Over,the factions in your bunker overthrew you";
+                
             buton1.SetActive(false);
             buton2.SetActive(false);
+            StartCoroutine (Exit());
+            esc.SetActive (true);
+            if (Input.GetKeyDown (KeyCode.Escape))
+            {
+                Application.Quit ();
+            }
         }
+    }
+    IEnumerator Exit()
+    {
+
+        yield return new WaitForSeconds (10f);
+
+        SceneManager.LoadScene (0);
     }
 }

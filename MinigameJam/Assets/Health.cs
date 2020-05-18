@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class Health : MonoBehaviour
     private Material black;
 
     public GameObject stage2;
+
+    [SerializeField]
+    private UnityEvent ev;
 
     private void Start ()
     {
@@ -19,6 +23,7 @@ public class Health : MonoBehaviour
         if (black.GetFloat("_Saturation") <= 0)
         {
             stage2.SetActive(true);
+            ev.Invoke ();
         }          
     }
     public void ADDInHealth (float dif = 0.05f)

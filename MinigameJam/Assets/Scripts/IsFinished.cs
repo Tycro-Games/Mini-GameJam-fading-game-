@@ -5,6 +5,10 @@ using UnityEngine;
 public class IsFinished : MonoBehaviour
 {
     public static int number = 0;
+    private void Start ()
+    {
+        number = 0;
+    }
     public static void GetUpgrade (Stats stats)
     {
         BulletSpawner.bonus.bonusFirerate += stats.fireRate;

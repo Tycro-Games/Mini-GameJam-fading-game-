@@ -14,6 +14,8 @@ public class EnemyAIStats : CommonStats, IHitable
 
     public void Die ()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
         FindObjectOfType<Health> ().ChangeInHealth (takePoints);
         if (transform.childCount > 0)
             transform.DetachChildren ();
